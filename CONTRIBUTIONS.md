@@ -1,17 +1,19 @@
-# Contributions — <Project-Group 9>
+# Contributions — Project-Group 9
 
-**Members:** < Stephanie Saintil (st447943)>
-**Repo:** <https://github.com/StephanieSaintil/Verification-of-a-Synchronous-FIFO/tree/main>
-**Last updated:** <11/14/2026> 
+**Members:**  Stephanie Saintil (st447943)
+
+**Repo:** https://github.com/StephanieSaintil/Verification-of-a-Synchronous-FIFO/tree/main
+
+**Last updated:** 11/14/2026 
 
 ---
 ---
 
-## M1 — <due Wk 11>
+## Verification plan 
 
 | Member | What they owned | Evidence (commits / files / PRs) | Approx. share |
 |--------|-----------------|----------------------------------|--------------:|
-|        |                 |                                  |               |
+|     Stephanie Saintil   |                 |                                  |               |
 |        |                 |                                  |               |
 
 **Shared or paired work:**
@@ -21,7 +23,7 @@
 <!-- Every team has a milestone where something slipped. Saying so here, at the
      time, is what makes the rest of the file credible. -->
 
-## M2 — <due Wk 12>
+## Constrained-random stimulus
 
 | Member | What they owned | Evidence (commits / files / PRs) | Approx. share |
 |--------|-----------------|----------------------------------|--------------:|
@@ -33,7 +35,7 @@
 
 **Changes to the division of labor since M1, and why:**
 
-## M3 — <due Wk 13>
+## Coverage closure
 
 | Member | What they owned | Evidence (commits / files / PRs) | Approx. share |
 |--------|-----------------|----------------------------------|--------------:|
@@ -45,7 +47,19 @@
 
 **Changes to the division of labor since M2, and why:**
 
-## M4 — <due Wk 14, at the `m4` tag>
+## Mutation-quality report
+
+| Member | What they owned | Evidence (commits / files / PRs) | Approx. share |
+|--------|-----------------|----------------------------------|--------------:|
+|        |                 |                                  |               |
+
+**Shared or paired work:**
+
+**What slipped, and who picked it up:**
+
+---
+
+## Team report and demo
 
 | Member | What they owned | Evidence (commits / files / PRs) | Approx. share |
 |--------|-----------------|----------------------------------|--------------:|
@@ -62,7 +76,7 @@
 One row per member, across all four milestones. This is the row a reader checks
 first, so it must be consistent with the four sections above.
 
-| Member | Principal contributions (all four milestones) | Overall share |
+| Member | Principal contributions (all four parts) | Overall share |
 |--------|-----------------------------------------------|--------------:|
 |        |                                               |               |
 |        |                                               |               |
