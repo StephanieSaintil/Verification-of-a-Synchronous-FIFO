@@ -7,7 +7,7 @@
 **In scope:** This plan verifies the functionality fifo using constrained-random stimulus and directed tests. 
                 It covers reset behaviors, status flags, count, and the ordering of the output data.
                 
-**Out of scope:** Verification does not include behaviors for non-default WIDTHS or DEPTHS.
+**Out of scope:** Verification does not guarantee behaviors for all pointer wrap inputs .
 
 **Assumptions about the environment:** rising-edge clock, active-low synchronous reset
 
@@ -15,7 +15,7 @@
 
 | ID | Feature | Req | Priority | How it is verified |
 |----|---------|-----|----------|--------------------|
-| F1 | DEPTH and WIDTH Parameters: correct behavior for 8-bit data and capacity of 8 entries| fifo.md lines 6-7 "Parameters"| H | directed + CRV |
+| F1 | DEPTH and WIDTH Parameters: correct behavior for multiple WIDTHS and DEPTHS | fifo.md lines 6-7 "Parameters"| H | directed + CRV |
 | F2 | Full flag: asserts when count reaches DEPTH | fifo.md line 28 Behavior #5| H | CRV |
 | F3 | Empty flag: asserts when count reaches 0 | fifo.md line 28 Behavior #5| H | CRV |
 | F4 | Reset behavior: count and full reaches 0 and empty flag is asserted | fifo.md line 21 Behavior #1| H | directed |
@@ -28,20 +28,31 @@
 
 ## 3. Coverage model
 
-Coverpoints and their bins. A cross earns its place only if the interaction is
-where a bug would hide — say which bug.
-
 | ID | Coverpoint | Bins | Why these bins |
 |----|-----------|------|----------------|
-| C1 |           |      |  |
+| C1 |  Reset | asserted when empty and !empty, asserted with rd_en and wr_en | Tests whether outputs are correct after reset|
+| C2 |  Boundaries | empty, full, near full, near empty | Confirms correctness of operations during transitions to full and empty  |
+| C3 |  Pointer wrap | advance read and write pointers to full and empty| Detects any skipped positions for reading and writing transactions |
+| C4 |  Output ordering | Read until empty, random intervals of read and writes| Verifies that first entered data is read first |
+| C5 |  Status flags | full = 1, full =0, empty = 1, empty = 0 | Checks that the status flag are being asserted correctly |
+| C6 |  Read | rd_en = 1, rd_en = 0, read while full, read while empty   | Checks read behavior and that reads are ignored at empty |
+| C7 |  Write | wr_en = 1, wr_en = 0, write while empty, write while full     |  Checks write behavior and that writes are dropped when full    |
+| C8 |  Simultaneous read and writes | both rd_en and wr_en = 0, both rd_en and wr_en = 1 | Confirms that count remains unchanged |
+| C9 |  Parameterization | defaults, (WIDTH = 7, DEPTH = 5), (WIDTH = 16, DEPTH = 16), (WIDTH = 32, DEPTH = 32) | Ensures correctness is not corrupted for smaller and larger parameters. |
 
 **Crosses**
 
 | ID | Cross | The interaction it is aimed at |
 |----|-------|-------------------------------|
-| X1 |       |  |
+| X1 |   status flags x count    |  |
+| X2 |   simultaneous operations x  boundaries   |  |
+| X3 |   simultaneous operations x  pointer wrap around   |  |
+| X4 |   reset x rd_data    |  |
 
-**Illegal / ignore bins:** <what is excluded and on what authority in the spec>
+
+
+**Illegal / ignore bins:** < 1. By the definition of full and empty in the spec full and empty cannot be asserted at the same time.
+                              2. Count is defined in the range of 0 - DEPTH only. Count cannot go beyond the depth specified.>
 
 ## 4. Test matrix
 
@@ -50,13 +61,14 @@ An untraceable test is a test nobody can defend.
 
 | Test | Features | Kind | Pass criterion |
 |------|----------|------|----------------|
-|      |          | directed / random / assertion / formal | |
+| basic read/write   |          | directed | |
 
 ## 5. Risk and spec ambiguity
 
 | # | Ambiguity or risk | Where in the spec | How I resolved it | Residual |
 |---|-------------------|-------------------|-------------------|----------|
-| 1 |                   |                   | asked / assumed / tested both | |
+| 1 | output of wr_en and rd_en when rst_n = 0 |  fifo.md line 21 Behavior #1 | assumed both default to 0 and will test during reset | No direct confirmation detailed in the spec although covered by testing |
+| 2 | What happens to data currently stored in the fifo if rst_n = 0 while !empty?  |  fifo.md line 21 Behavior #1 | Tested by doing read operations immediately after resetting non-empty fifo. | Is the data still reachable or completely lost? |
 
 ## 6. Closure criteria
 
@@ -65,5 +77,8 @@ negotiation.
 
 - Functional coverage target: **90%** of the model in section 3
 - Mutation target: **18/20** on the hidden pool
-- Assertions: every property paired with a passing `cover` (no vacuous passes)
-- What I will report as **not verified**:
+- Assertions: 1. Count: C1, C2, C8, and C3
+              2. Full and Empty: C5
+              3. rd_data: C4
+- What I will report as **not verified**: Verification does not include
+
