@@ -1,10 +1,6 @@
-# Verification plan — <DUT>
+# Verification plan — fifo.sv
 
-**Author:** **Spec version:** **Date:**
-
-> A vplan is an argument that "done" is definable before you write tests. Every
-> row here should be something you could defend in a signoff meeting. Rows you
-> cannot defend are the honest content of the Risk section, not omissions.
+**Author: Stephanie Saintil** **Spec version: dut/specs/fifo.md** **Date: 11/14/2026**
 
 ## 1. Scope
 
