@@ -1,12 +1,12 @@
 # Verification plan — fifo.sv
 
-**Author: Stephanie Saintil** **Spec version: dut/specs/fifo.md** **Date: 11/14/2026**
+**Author: Stephanie Saintil**   **Spec version: dut/specs/fifo.md**   **Date: 11/14/2026**
 
 ## 1. Scope
 
 **In scope:** <what this plan claims to verify>
-**Out of scope:** <what it does not — say so plainly; this is not a weakness>
-**Assumptions about the environment:** <clock, reset, protocol legality>
+**Out of scope:** < Verification does not include behaviors for non-default WIDTHS or DEPTHS.>
+**Assumptions about the environment:** <rising-edge clock, active-low synchronous reset>
 
 ## 2. Feature list
 
@@ -15,7 +15,7 @@ spec — if you cannot cite one, that is a spec gap and it belongs in section 5.
 
 | ID | Feature | Req | Priority | How it is verified |
 |----|---------|-----|----------|--------------------|
-| F1 |         |     | H/M/L    | directed / CRV / assertion / formal |
+| F1 | DEPTH and WIDTH Parameters: correct behavior for 8-bit data and capacity of 8 entries| fifo.md lines 6-7 "Parameters"| H | directed + CRV |
 | F2 |         |     |          |  |
 
 ## 3. Coverage model
