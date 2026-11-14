@@ -1,34 +1,10 @@
-# Contributions — <team name> · <track>
+# Contributions — <Project-Group 9>
 
-<!-- Capstone, Milestones 1-4. Lives in your team repo root as CONTRIBUTIONS.md.
-     ONE file per team, updated at every milestone — not written at the end.
-     Delete every comment block before you submit. -->
-
-> This file and the git history are cross-checked against each other, and
-> against every member's confidential peer eval. Where the three disagree, the
-> conversation happens *before* the Professionalism row is scored — so make
-> them agree. A file written the night of M4 will not survive that check, and
-> the way it fails is by being vague.
-
-**Members:** <name (NID) · name (NID) · …>
-**Repo:** <URL>
-**Track:** RV32I core / AXI-Lite subsystem / secure_gate
-**Last updated:** <date> · **through milestone:** M__
+**Members:** < Stephanie Saintil (st447943)>
+**Repo:** <https://github.com/StephanieSaintil/Verification-of-a-Synchronous-FIFO/tree/main>
+**Last updated:** <11/14/2026> 
 
 ---
-
-## How to read this file
-
-Each milestone section lists what each member owned, with the commits, files, or
-tags that show it. "Helped with the testbench" is not a contribution record.
-"Wrote the constrained-random sequence and its coverage bins — `tb/seq_rw.py`,
-commits `a1b2c3d`..`e4f5g6h`" is.
-
-Work that is genuinely shared gets its own row and says how it was shared
-(pairing, review, a split you can describe). Do not inflate, and do not
-flatten real differences into a polite fiction — an honest record of an uneven
-milestone reads far better than a uniform one nobody believes.
-
 ---
 
 ## M1 — <due Wk 11>
