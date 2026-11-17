@@ -44,11 +44,10 @@
 
 | ID | Cross | The interaction it is aimed at |
 |----|-------|-------------------------------|
-| X1 |   status flags x count    |  |
-| X2 |   simultaneous operations x  boundaries   |  |
-| X3 |   simultaneous operations x  pointer wrap around   |  |
-| X4 |   reset x rd_data    |  |
-
+| X1 |   status flags x count    | Detects incorrect full or empty flags at the current count |
+| X2 |   simultaneous operations x  boundaries   | Catches bugs that specifically occur when both read and writes are attempted at full or empty|
+| X3 |   simultaneous operations x pointer wrap around   | Detects pointer inconsistency bugs when both read and writes occur  |
+| X4 |  reset x rd_data  | Detects any output corruption occurring after reset |
 
 
 **Illegal / ignore bins:** < 1. By the definition of full and empty in the spec full and empty cannot be asserted at the same time.
@@ -61,7 +60,8 @@ An untraceable test is a test nobody can defend.
 
 | Test | Features | Kind | Pass criterion |
 |------|----------|------|----------------|
-| basic read/write   |          | directed | |
+| basic read/write   | F6 & F7  | CRV | Accepted read results in count - 1, Accepted write results in count + 1 |
+| write when full |  | CRV | Accepted read results in count - 1, Accepted write results in count + 1 |
 
 ## 5. Risk and spec ambiguity
 
